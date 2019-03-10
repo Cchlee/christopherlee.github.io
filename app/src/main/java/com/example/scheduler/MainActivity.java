@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         loginCredentials.put("Prafful", "password1234");
-        loginCredentials.put("Yunhee", "chicken");
+        loginCredentials.put("Yunhee", "chicken2");
 
         username = (EditText) findViewById(R.id.etUsername);
         password = (EditText) findViewById(R.id.etPassword);
