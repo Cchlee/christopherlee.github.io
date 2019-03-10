@@ -22,7 +22,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 .withSplashTimeOut(3500)
                 .withBackgroundResource(R.drawable.login_background)
                 .withLogo(R.drawable.ic_timetable)
-                .withAfterLogoText("Scheduler2")
+                .withAfterLogoText("Scheduler3")
                 .withFooterText("Copyright 2019");
 
         //config.getFooterTextView().setTextColor(Color.WHITE);
