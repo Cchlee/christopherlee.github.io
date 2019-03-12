@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         loginCredentials.put("Prafful", "password1234");
         loginCredentials.put("Yunhee", "anotherpassword");
+        loginCredentials.put("Daphne", "12345");
+
 
         username = (EditText) findViewById(R.id.etUsername);
         password = (EditText) findViewById(R.id.etPassword);
