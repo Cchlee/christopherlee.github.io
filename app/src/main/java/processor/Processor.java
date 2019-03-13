@@ -2,6 +2,7 @@ package processor;
 
 import java.util.*;
 import data.Community;
+import data.CommunityMember;
 import data.Project;
 import data.User;
 import datamanagement.Reader;
@@ -48,8 +49,31 @@ public class Processor implements ProcessorInterface {
         return true;
     }
 
+
+    // Transforms User to Community member depending on how user preferences are recorded ->
+    // see method in CommunityMember called addPreference
     @Override
-    public boolean deleteCommunity(Community community) {
+    public boolean addUserToCommunity(String community, User user) {
+        return false;
+    }
+
+    @Override
+    public boolean removeUserFromCommunity(String community, User user) {
+        return false;
+    }
+
+    @Override
+    public boolean addUserToProject(String community, User user) {
+        return false;
+    }
+
+    @Override
+    public boolean removeUserFromProject(String community, User user) {
+        return false;
+    }
+
+    @Override
+    public boolean removeCommunity(Community community) {
         if (communities.containsKey(community.getName())) {
             communities.remove(community.getName());
             return true;
@@ -59,7 +83,7 @@ public class Processor implements ProcessorInterface {
     }
 
     @Override
-    public boolean deleteProject(Project project) {
+    public boolean removeProject(Project project) {
         String projectCommunity = project.getCommunityCreatedIn();
         if (communities.containsKey(projectCommunity)) {
             Community community = communities.get(projectCommunity);
@@ -72,7 +96,7 @@ public class Processor implements ProcessorInterface {
     }
 
     @Override
-    public boolean deleteUser(User user) {
+    public boolean removeUser(User user) {
         if (users.contains(user)) {
             users.remove(user);
             return true;

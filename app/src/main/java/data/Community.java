@@ -5,13 +5,13 @@ public class Community {
     private String name;
     private String description;
     private TreeSet<Project> projects;
-    private TreeSet<User> users;
+    private TreeSet<CommunityMember> members;
 
     public Community(String name, String description) {
         this.name = name;
         this.description = description;
         projects = new TreeSet<Project>();
-        users = new TreeSet<User>();
+        members = new TreeSet<CommunityMember>();
     }
 
     public void addProject(Project project) {
@@ -30,12 +30,12 @@ public class Community {
         this.name = name;
     }
 
-    public void addUser(User user) {
-        users.add(user);
+    public TreeSet<CommunityMember> getMembers() {
+        return members;
     }
 
-    public void removeUser(User user) {
-        users.remove(user);
+    public void setMembers(TreeSet<CommunityMember> members) {
+        this.members = members;
     }
 
     public String getDescription() {
@@ -54,13 +54,6 @@ public class Community {
         this.projects = projects;
     }
 
-    public TreeSet<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(TreeSet<User> users) {
-        this.users = users;
-    }
 
     @Override
     public boolean equals(Object o) {
