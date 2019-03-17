@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private int incorrectCounter = 0;
     static HashMap<String, String> loginCredentials = new HashMap<>();
 
+    private Button newAccount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
         loginCredentials.put("Yunhee", "anotherpassword");
         loginCredentials.put("Tasya", "123");
 
-        username = (EditText) findViewById(R.id.etUsername);
-        password = (EditText) findViewById(R.id.etPassword);
-        login = (Button) findViewById(R.id.loginButton);
-        forgotLogin = (TextView) findViewById(R.id.tvForgotLogin);
+        username = findViewById(R.id.etUsername);
+        password = findViewById(R.id.etPassword);
+        login = findViewById(R.id.loginButton);
+        forgotLogin = findViewById(R.id.tvForgotLogin);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        newAccount = findViewById(R.id.newAccountButton);
+        newAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CreateAccount.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
