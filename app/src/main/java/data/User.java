@@ -1,7 +1,8 @@
 package data;
+import java.io.Serializable;
 import java.util.*;
 
-public class User {
+public class User implements Serializable {
     private String displayName;
     private String password;
     private HashMap<String, List<Integer>> schedule; // schedule is represented as a mapping of the
