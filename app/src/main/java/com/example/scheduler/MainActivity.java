@@ -10,6 +10,10 @@ import android.widget.*;
 
 import java.util.HashMap;
 
+import datamanagement.LocalReader;
+import datamanagement.Reader;
+import processor.Processor;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText username;
@@ -17,22 +21,23 @@ public class MainActivity extends AppCompatActivity {
     private Button login;
     private TextView forgotLogin;
     private int incorrectCounter = 0;
-    static HashMap<String, String> loginCredentials = new HashMap<>();
+
+    //Setting up backend
+    public static final Reader local = new LocalReader();
+    public static final Processor processor = new Processor(local);;
+
+    private Button newAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loginCredentials.put("Prafful", "password1234");
-        loginCredentials.put("Yunhee", "anotherpassword");
-        loginCredentials.put("Daphne", "12345");
+        username = findViewById(R.id.etUsername);
+        password = findViewById(R.id.etPassword);
+        login = findViewById(R.id.loginButton);
+        forgotLogin = findViewById(R.id.tvForgotLogin);
 
-
-        username = (EditText) findViewById(R.id.etUsername);
-        password = (EditText) findViewById(R.id.etPassword);
-        login = (Button) findViewById(R.id.loginButton);
-        forgotLogin = (TextView) findViewById(R.id.tvForgotLogin);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,12 +46,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        newAccount = findViewById(R.id.newAccountButton);
+        newAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CreateAccount.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
     //Want to access database for login credentials here
     private void validate (String inputUsername, String inputPassword){
-        if (checkLoginCredentials(inputUsername, inputPassword)){
+        if (processor.validateLogin(inputUsername, inputPassword)){
             Intent intent = new Intent(MainActivity.this, SecondPage.class);
             startActivity(intent);
         }
@@ -64,13 +77,5 @@ public class MainActivity extends AppCompatActivity {
                 login.setEnabled(false);
             }
         }
-    }
-    //This method for now will be hardcoded with Usernames and Passwords (maybe like a Map or something)
-    //Eventually, we'll look towards making Database queries
-    private boolean checkLoginCredentials(String us, String pw){
-        if (loginCredentials.containsKey(us)){
-            return loginCredentials.get(us).equals(pw);
-        }
-        return false;
     }
 }
