@@ -11,7 +11,7 @@ public class ViewCommunity extends AppCompatActivity {
     private Button newProject;
     private Button runScheduler;
     private String communityName;
-
+    private boolean projectVisibility;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +28,12 @@ public class ViewCommunity extends AppCompatActivity {
             }
         });
 
+        projectVisibility = getIntent().getBooleanExtra("isUser", true);
+        if(projectVisibility) {
+            newProject.setVisibility(View.GONE);
+        } else {
+            newProject.setVisibility(View.VISIBLE);
+        }
 
         // Run scheduler algorithm
         runScheduler = findViewById(R.id.schedulerButton);
