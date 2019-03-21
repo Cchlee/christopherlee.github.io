@@ -1,7 +1,8 @@
 package data;
+import java.io.Serializable;
 import java.util.*;
 
-public class Project {
+public class Project implements Serializable {
     private String name;
     private String communityCreatedIn;
     private String description;
