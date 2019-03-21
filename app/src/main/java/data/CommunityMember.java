@@ -7,12 +7,12 @@ public class CommunityMember extends User {
     private Map<String, Integer> preferences;
 
     public CommunityMember(String displayName, String password) {
-        super(displayName, password);
+        super(displayName, password, false);
         this.preferences = new HashMap<>();
     }
 
     public CommunityMember(String displayName, String password, Map<String, Integer> preferences) {
-        super(displayName, password);
+        super(displayName, password, false);
         this.preferences = preferences;
     }
 

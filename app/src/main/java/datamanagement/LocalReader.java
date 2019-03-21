@@ -15,9 +15,9 @@ public class LocalReader implements Reader {
         communities = new HashMap<>();
 
         //initialize dummy data below
-        users.add(new User("Prafful", "password1234"));
-        users.add(new User("Yunhee", "anotherpassword"));
-        users.add(new User("Tasya", "123"));
+        users.add(new User("Prafful", "password1234", false));
+        users.add(new User("Yunhee", "anotherpassword", false));
+        users.add(new User("Tasya", "123", false));
 
         communities.put("Community 1", new Community("Community 1", "let's see if this works"));
         communities.put("Community 2", new Community("Community 2", "Cultural, International Group"));

@@ -71,7 +71,6 @@ public class ViewCommunity extends AppCompatActivity {
             textView.setText(userNames[i]);
 
             usersInCommunity.addView(view);
-
         }
     }
 }
