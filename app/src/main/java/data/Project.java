@@ -6,7 +6,7 @@ public class Project implements Serializable {
     private String name;
     private String communityCreatedIn;
     private String description;
-    private TimeSlot timeslot;
+    private int timeslot;
     private Map<String, Integer> roles; // role types and number of people per role required
     private TreeSet<User> users;
     private Map<String, List<User>> userAssignment;
@@ -37,11 +37,11 @@ public class Project implements Serializable {
         this.description = description;
     }
 
-    public TimeSlot getTimeslot() {
+    public int getTimeslot() {
         return timeslot;
     }
 
-    public void setTimeslot(TimeSlot timeslot) {
+    public void setTimeslot(int timeslot) {
         this.timeslot = timeslot;
     }
 
