@@ -51,10 +51,12 @@ public class AddProject extends AppCompatActivity {
             public void onClick(View v) {
                 createProject();
 
-                // create Project object and pass to View Community
+                // create Project object and add it to backend
                 Project project = new Project(name.toString(), description.toString(), communityName, roles);
+                MainActivity.processor.createProject(project);
+
+                // go back to view community
                 Intent intent = new Intent(AddProject.this, ViewCommunity.class);
-                intent.putExtra("Project", project);
                 startActivity(intent);
             }
         });
