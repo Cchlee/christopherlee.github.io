@@ -22,6 +22,8 @@ public class User implements Serializable {
         this.displayName = displayName;
     }
 
+    public String getPassword(){return password;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -10,6 +10,10 @@ import android.widget.*;
 
 import java.util.HashMap;
 
+import datamanagement.LocalReader;
+import datamanagement.Reader;
+import processor.Processor;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText username;
@@ -17,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private Button login;
     private TextView forgotLogin;
     private int incorrectCounter = 0;
-    static HashMap<String, String> loginCredentials = new HashMap<>();
+
+    public Reader local;
+    public static Processor processor;
 
     private Button newAccount;
 
@@ -26,14 +32,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loginCredentials.put("Prafful", "password1234");
-        loginCredentials.put("Yunhee", "anotherpassword");
-        loginCredentials.put("Tasya", "123");
+        //Set up LocalReader and Processor
+        local = new LocalReader();
+        processor = new Processor(local);
+
 
         username = findViewById(R.id.etUsername);
         password = findViewById(R.id.etPassword);
         login = findViewById(R.id.loginButton);
         forgotLogin = findViewById(R.id.tvForgotLogin);
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Want to access database for login credentials here
     private void validate (String inputUsername, String inputPassword){
-        if (checkLoginCredentials(inputUsername, inputPassword)){
-            Intent intent = new Intent(MainActivity.this, SecondPage.class);
+        if (processor.validateLogin(inputUsername, inputPassword)){
+            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
             startActivity(intent);
         }
         else{
@@ -73,13 +81,5 @@ public class MainActivity extends AppCompatActivity {
                 login.setEnabled(false);
             }
         }
-    }
-    //This method for now will be hardcoded with Usernames and Passwords (maybe like a Map or something)
-    //Eventually, we'll look towards making Database queries
-    private boolean checkLoginCredentials(String us, String pw){
-        if (loginCredentials.containsKey(us)){
-            return loginCredentials.get(us).equals(pw);
-        }
-        return false;
     }
 }

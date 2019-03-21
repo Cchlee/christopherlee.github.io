@@ -8,13 +8,39 @@ import data.User;
 import datamanagement.Reader;
 
 public class Processor implements ProcessorInterface {
-    private TreeSet<User> users;
-    private HashMap<String, Community> communities;
+    private Set<User> users;
+    private Map<String, Community> communities;
 
     public Processor(Reader reader) {
         users = reader.getUsers();
         communities = reader.getCommunities();
     }
+
+    @Override
+    public boolean validateLogin(String username, String password) {
+        for (User u: users){
+            if (u.getDisplayName().equals(username)){
+                return u.getPassword().equals(password);
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public List<Community> getCommunities() {
+        ArrayList<Community> ret = new ArrayList<>();
+        for (Community c: communities.values()){
+            ret.add(c);
+        }
+        return ret;
+    }
+
+    @Override
+    public java.util.Set<User> getUsers() {
+        return users;
+    }
+
+
 
     @Override
     public boolean createCommunity(Community community) {
@@ -25,6 +51,9 @@ public class Processor implements ProcessorInterface {
         communities.put(community.getName(), community);
         return true;
     }
+
+
+
 
     @Override
     public boolean createProject(Project project) {
