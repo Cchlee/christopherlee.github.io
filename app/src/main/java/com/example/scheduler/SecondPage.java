@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.*;
 import android.content.Intent;
+import data.*;
 
 public class SecondPage extends AppCompatActivity {
     private Button newCommunity;
@@ -60,8 +61,6 @@ public class SecondPage extends AppCompatActivity {
             imageView.setImageResource(R.mipmap.ic_launcher);
 
             recentCommunities.addView(view);
-
         }
-
     }
 }
