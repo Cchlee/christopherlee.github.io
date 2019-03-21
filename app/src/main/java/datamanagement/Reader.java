@@ -7,6 +7,6 @@ import data.Community;
 import data.User;
 
 public interface Reader {
-    HashMap<String, Community> getCommunities();
-    TreeSet<User> getUsers();
+    java.util.Map<String, Community> getCommunities();
+    java.util.Set<User> getUsers();
 }
