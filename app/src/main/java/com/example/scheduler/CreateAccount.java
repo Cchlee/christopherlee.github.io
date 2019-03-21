@@ -52,7 +52,7 @@ public class CreateAccount extends AppCompatActivity {
 
     private void checkUser() {
         if (isUser) {
-            User user = new User(name.toString(), password.toString());
+            User user = new User(name.getText().toString(), password.getText().toString());
             Intent intent = new Intent(CreateAccount.this, UserSchedule.class);
             intent.putExtra("User", user);
             startActivity(intent);
