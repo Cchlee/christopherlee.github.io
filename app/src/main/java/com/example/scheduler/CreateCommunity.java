@@ -22,7 +22,7 @@ public class CreateCommunity extends AppCompatActivity {
         // Create new community
         Community community = new Community(name.getText().toString(), description.getText().toString());
 
-        // Go back to homepage
+//      Go back to homepage
         Intent intent = new Intent(CreateCommunity.this, SecondPage.class);
         intent.putExtra("Community", community);
         startActivity(intent);

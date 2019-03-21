@@ -29,10 +29,10 @@ public class SecondPage extends AppCompatActivity {
 
         isUser = true;
         searchCommunity = findViewById(R.id.searchCommunityButton);
-        newCommunity.setOnClickListener(new View.OnClickListener() {
+        searchCommunity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SecondPage.this, ViewCommunity.class); //SHOULD LINK TO SEARCH PAGE
+                Intent intent = new Intent(SecondPage.this, SearchActivity.class); //SHOULD LINK TO SEARCH PAGE
                 intent.putExtra("isUser", isUser);
                 startActivity(intent);
             }
