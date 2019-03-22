@@ -1,5 +1,7 @@
 package com.example.scheduler;
 import android.view.View;
+import data.User;
+import java.util.Set;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,6 +35,9 @@ public class UserSchedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_schedule);
 
+        Bundle extras = getIntent().getExtras();
+        final String username = extras.getString("username");
+
         for (int i = 0; i < 168; i++) {
             schedule[i] = false;
         }
@@ -55,10 +60,18 @@ public class UserSchedule extends AppCompatActivity {
         makeSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserSchedule.this, MainActivity.class); //SHOULD LINK TO SEARCH PAGE
+                Intent intent = new Intent(UserSchedule.this, SecondPage.class); //SHOULD LINK TO SEARCH PAGE
+                Set<User> users = MainActivity.processor.getUsers();
+                for (User user : users) {
+                    if (user.getDisplayName() == username) {
+                        user.setSchedule(schedule);
+                    }
+                }
                 startActivity(intent);
             }
         });
+
+
 
     }
 
