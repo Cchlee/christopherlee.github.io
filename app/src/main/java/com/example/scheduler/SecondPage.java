@@ -40,8 +40,8 @@ public class SecondPage extends AppCompatActivity {
         });
 
         displayCommunities = new String[5];
-        displayCommunities[0] = "UNICEF";
         displayCommunities[1] = "WWF";
+        displayCommunities[0] = "UNICEF";
         displayCommunities[2] = "OXFAM";
         displayCommunities[3] = "ACS";
         displayCommunities[4] = "RAINN";
