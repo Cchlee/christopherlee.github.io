@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     //Want to access database for login credentials here
     private void validate (String inputUsername, String inputPassword){
         if (checkLoginCredentials(inputUsername, inputPassword)){
-            Intent intent = new Intent(MainActivity.this, SecondPage.class);
+            Intent intent = new Intent(MainActivity.this, UserSchedule.class);
             startActivity(intent);
         }
         else{
