@@ -22,8 +22,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView forgotLogin;
     private int incorrectCounter = 0;
 
-    public Reader local;
-    public static Processor processor;
+    //Setting up backend
+    public static final Reader local = new LocalReader();
+    public static final Processor processor = new Processor(local);;
 
     private Button newAccount;
 
@@ -31,11 +32,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //Set up LocalReader and Processor
-        local = new LocalReader();
-        processor = new Processor(local);
-
 
         username = findViewById(R.id.etUsername);
         password = findViewById(R.id.etPassword);
@@ -64,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
     //Want to access database for login credentials here
     private void validate (String inputUsername, String inputPassword){
         if (processor.validateLogin(inputUsername, inputPassword)){
-            //Intent intent = new Intent(MainActivity.this, SearchActivity.class);
             Intent intent = new Intent(MainActivity.this, SecondPage.class);
             startActivity(intent);
         }
