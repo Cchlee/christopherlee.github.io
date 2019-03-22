@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -19,6 +20,15 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Comm
 
     private List<Community> mCommunityList;
     private List<Community> mCommunityListFull;
+    private onCommunityClickListener mListener;
+
+    public interface onCommunityClickListener{
+        void onCommunityClick(int position);
+    }
+
+    public void setOnCommunityClickListener(onCommunityClickListener listener){
+        mListener = listener;
+    }
 
 
     public static class CommunityViewHolder extends RecyclerView.ViewHolder{
@@ -27,12 +37,23 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Comm
         public TextView mTextView1;
         public TextView mTextView2;
 
-        public CommunityViewHolder(@NonNull View itemView) {
+        public CommunityViewHolder(@NonNull View itemView, final onCommunityClickListener listener ) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.TempID);
             mTextView1 = itemView.findViewById(R.id.AnotherTempID);
             mTextView2 = itemView.findViewById(R.id.AnotherTempID2);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            listener.onCommunityClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -45,7 +66,7 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Comm
     @Override
     public CommunityViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.community_item, viewGroup, false );
-        CommunityViewHolder cvh = new CommunityViewHolder(view);
+        CommunityViewHolder cvh = new CommunityViewHolder(view, mListener);
         return cvh;
     }
 

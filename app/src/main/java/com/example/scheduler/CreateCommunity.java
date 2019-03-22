@@ -24,10 +24,12 @@ public class CreateCommunity extends AppCompatActivity {
 
         // Create new community
         final Community community = new Community(name.getText().toString(), description.getText().toString());
+
         createCommunity = findViewById(R.id.createCommunityButton);
         createCommunity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // Add to backend
                 MainActivity.processor.createCommunity(community);
 //                System.out.println("I add community");
@@ -35,7 +37,6 @@ public class CreateCommunity extends AppCompatActivity {
 //                for (Community c : communities) {
 //                    System.out.println(c.getName());
 //                }
-
 
                 Intent intent = new Intent(CreateCommunity.this, SecondPage.class);
                 startActivity(intent);
