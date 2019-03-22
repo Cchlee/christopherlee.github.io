@@ -26,5 +26,15 @@ public class CommunityMember extends User {
         return true;
     }
 
+    public boolean hasPreference(String roleType)
+    {
+        return preferences.containsKey(roleType);
+    }
+
+    public  Map<String, Integer> getPreferences()
+    {
+        return preferences;
+    }
+
 
 }

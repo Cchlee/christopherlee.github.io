@@ -47,8 +47,10 @@ public class Processor implements ProcessorInterface {
         if (communities.containsKey(community.getName())) {
             return false;
         }
-
+//        System.out.println(communities.size());
+//        System.out.println(community.getName());
         communities.put(community.getName(), community);
+        //System.out.println(communities.size());
         return true;
     }
 

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.*;
 import android.content.Intent;
 import data.*;
+import java.util.*;
 
 public class CreateCommunity extends AppCompatActivity {
     private EditText name;
@@ -24,13 +25,19 @@ public class CreateCommunity extends AppCompatActivity {
         // Create new community
         final Community community = new Community(name.getText().toString(), description.getText().toString());
 
-        // Add to backend
-
         createCommunity = findViewById(R.id.createCommunityButton);
         createCommunity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Add to backend
                 MainActivity.processor.createCommunity(community);
+//                System.out.println("I add community");
+//                List<Community> communities = MainActivity.processor.getCommunities();
+//                for (Community c : communities) {
+//                    System.out.println(c.getName());
+//                }
+
                 Intent intent = new Intent(CreateCommunity.this, SecondPage.class);
                 startActivity(intent);
             }

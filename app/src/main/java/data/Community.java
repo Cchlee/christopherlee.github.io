@@ -8,15 +8,15 @@ public class Community implements Serializable {
     private int imageResource;
     private String name;
     private String description;
-    private TreeSet<Project> projects;
-    private TreeSet<CommunityMember> members;
+    private Set<Project> projects;
+    private Set<CommunityMember> members;
 
     public Community(String name, String description) {
         setImageResource();
         this.name = name;
         this.description = description;
-        projects = new TreeSet<Project>();
-        members = new TreeSet<CommunityMember>();
+        projects = new HashSet<>();
+        members = new HashSet<CommunityMember>();
     }
 
     public void addProject(Project project) {
@@ -35,11 +35,11 @@ public class Community implements Serializable {
         this.name = name;
     }
 
-    public TreeSet<CommunityMember> getMembers() {
+    public Set<CommunityMember> getMembers() {
         return members;
     }
 
-    public void setMembers(TreeSet<CommunityMember> members) {
+    public void setMembers(Set<CommunityMember> members) {
         this.members = members;
     }
 
@@ -51,11 +51,11 @@ public class Community implements Serializable {
         this.description = description;
     }
 
-    public TreeSet<Project> getProjects() {
+    public Set<Project> getProjects() {
         return projects;
     }
 
-    public void setProjects(TreeSet<Project> projects) {
+    public void setProjects(Set<Project> projects) {
         this.projects = projects;
     }
 

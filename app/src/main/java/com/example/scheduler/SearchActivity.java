@@ -27,7 +27,13 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        final List<Community> communityList = MainActivity.processor.getCommunities();
+//        System.out.println("SEARCH GET COMMUNITY: " + MainActivity.processor.getCommunities().size());
+//        List<Community> communities = MainActivity.processor.getCommunities();
+//        for (Community c : communities) {
+//            System.out.println(c.getName());
+//        }
+
+        List<Community> communityList = MainActivity.processor.getCommunities();
         mRecyclerView = findViewById(R.id.recyclerView);
         //Uncomment line 27 if you think Communities will have fixed number. Doubt it tho. But will increase performance.
         //mRecyclerView.setHasFixedSize(true);
