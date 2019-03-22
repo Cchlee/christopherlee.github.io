@@ -103,6 +103,8 @@ public class Processor implements ProcessorInterface {
         return false;
     }
 
+    public Map<String, Community> getCommunitiesMap() {return communities;}
+
     @Override
     public boolean removeCommunity(Community community) {
         if (communities.containsKey(community.getName())) {
@@ -154,4 +156,6 @@ public class Processor implements ProcessorInterface {
         }
         return output;
     }
+
+
 }

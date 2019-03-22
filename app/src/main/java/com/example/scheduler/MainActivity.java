@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Setting up backend
     public static final Reader local = new LocalReader();
-    public static final Processor processor = new Processor(local);;
+    public static final Processor processor = new Processor(local);
 
     private Button newAccount;
 

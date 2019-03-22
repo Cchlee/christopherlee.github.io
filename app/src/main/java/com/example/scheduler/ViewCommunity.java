@@ -1,11 +1,15 @@
 package com.example.scheduler;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.*;
 import android.content.Intent;
+
+import java.util.Map;
+
 import data.*;
 
 public class ViewCommunity extends AppCompatActivity {
@@ -15,10 +19,31 @@ public class ViewCommunity extends AppCompatActivity {
     private boolean projectVisibility;
     private String[] userNames;
     private ImageView communityIcon;
+    private Community community;
+    private TextView title;
+    private Map<String, Community> communityMap;
+    private TextView description;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_community);
+
+        communityName = getIntent().getStringExtra("Clicked Community");
+        communityMap = MainActivity.processor.getCommunitiesMap();
+        community = communityMap.get(communityName);
+        //community = getIntent().getParcelableExtra("Clicked Community");
+
+        title = findViewById(R.id.Title);
+        title.setText(community.getName());
+
+        description = findViewById(R.id.commDescript);
+        description.setText(community.getDescription());
+
+
+        community.setImageResource();
+        communityIcon = findViewById(R.id.communityIcon);
+        communityIcon.setImageResource(community.getImageResource());
 
         // Add new project
         newProject = findViewById(R.id.addProjectButton);
@@ -38,8 +63,6 @@ public class ViewCommunity extends AppCompatActivity {
             newProject.setVisibility(View.VISIBLE);
         }
 
-        communityIcon = findViewById(R.id.communityIcon);
-        communityIcon.setImageResource(R.drawable.ic_public_black);
 
         // Run scheduler algorithm
         runScheduler = findViewById(R.id.schedulerButton);

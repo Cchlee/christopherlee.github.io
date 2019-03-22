@@ -33,7 +33,7 @@ public class SearchActivity extends AppCompatActivity {
 //            System.out.println(c.getName());
 //        }
 
-        List<Community> communityList = MainActivity.processor.getCommunities();
+        final List<Community> communityList = MainActivity.processor.getCommunities();
         mRecyclerView = findViewById(R.id.recyclerView);
         //Uncomment line 27 if you think Communities will have fixed number. Doubt it tho. But will increase performance.
         //mRecyclerView.setHasFixedSize(true);
@@ -48,7 +48,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onCommunityClick(int position) {
                  Community clicked = communityList.get(position);
                  Intent intent = new Intent(SearchActivity.this, ViewCommunity.class);
-                 intent.putExtra("Clicked Community", clicked);
+                 intent.putExtra("Clicked Community", clicked.getName());
                  startActivity(intent);
             }
         });
