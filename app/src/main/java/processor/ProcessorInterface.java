@@ -11,6 +11,10 @@ public interface ProcessorInterface {
 
     // for all methods, return True if it was successful
 
+    boolean validateLogin(String username, String password);
+    java.util.List<Community> getCommunities();
+    java.util.Set<User> getUsers();
+
     boolean createCommunity(Community community);
     boolean createProject(Project project);
     boolean createUser(User user);

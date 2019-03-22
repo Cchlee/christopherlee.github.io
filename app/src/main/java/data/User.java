@@ -5,13 +5,17 @@ import java.util.*;
 public class User implements Serializable {
     private String displayName;
     private String password;
-    private HashMap<String, List<Integer>> schedule; // schedule is represented as a mapping of the
+    private boolean isLeader;
+    private boolean[] scheduleArray;
+    //private HashMap<String, List<Integer>> schedule; // schedule is represented as a mapping of the
                                                     // day of the week to the list of available hours
 
 
-    public User(String displayName, String password) {
+    public User(String displayName, String password, boolean isLeader) {
         this.displayName = displayName;
         this.password = password;
+        this.isLeader = isLeader;
+        scheduleArray = new boolean[24*7];
     }
 
     public String getDisplayName() {
@@ -22,6 +26,8 @@ public class User implements Serializable {
         this.displayName = displayName;
     }
 
+    public String getPassword(){return password;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -30,11 +36,11 @@ public class User implements Serializable {
         return displayName.equals(user.displayName);
     }
 
-    public HashMap<String, List<Integer>> getSchedule() {
-        return schedule;
+    public boolean[] getSchedule() {
+        return scheduleArray;
     }
 
-    public void setSchedule(HashMap<String, List<Integer>> schedule) {
-        this.schedule = schedule;
+    public void setSchedule(boolean[] schedule) {
+        this.scheduleArray = schedule;
     }
 }

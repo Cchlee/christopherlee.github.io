@@ -1,13 +1,14 @@
 package data;
+import java.io.Serializable;
 import java.util.*;
 
-public class Project {
+public class Project implements Serializable {
     private String name;
     private String communityCreatedIn;
     private String description;
-    private TimeSlot timeslot;
+    private int timeslot;
     private Map<String, Integer> roles; // role types and number of people per role required
-    private TreeSet<User> users;
+    private Set<User> users;
     private Map<String, List<User>> userAssignment;
 
     public Project(String name, String description, String communityCreatedIn,
@@ -16,7 +17,7 @@ public class Project {
         this.description = description;
         this.roles = roles;
         this.communityCreatedIn = communityCreatedIn;
-        users = new TreeSet<User>();
+        users = new HashSet<User>();
         userAssignment = new HashMap<String, List<User>> ();
     }
 
@@ -36,11 +37,11 @@ public class Project {
         this.description = description;
     }
 
-    public TimeSlot getTimeslot() {
+    public int getTimeslot() {
         return timeslot;
     }
 
-    public void setTimeslot(TimeSlot timeslot) {
+    public void setTimeslot(int timeslot) {
         this.timeslot = timeslot;
     }
 
@@ -52,11 +53,11 @@ public class Project {
         this.roles = roles;
     }
 
-    public TreeSet<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(TreeSet<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 

@@ -52,12 +52,19 @@ public class CreateAccount extends AppCompatActivity {
 
     private void checkUser() {
         if (isUser) {
-            User user = new User(name.toString(), password.toString());
+            User user = new User(name.getText().toString(), password.getText().toString(), false);
             Intent intent = new Intent(CreateAccount.this, UserSchedule.class);
             intent.putExtra("User", user);
+
+            // add to database
+            MainActivity.processor.createUser(user);
             startActivity(intent);
         } else {
+            User user = new User(name.getText().toString(), password.getText().toString(), true);
             Intent intent = new Intent(CreateAccount.this, MainActivity.class);
+
+            // add to database
+            MainActivity.processor.createUser(user);
             startActivity(intent);
         }
     }
