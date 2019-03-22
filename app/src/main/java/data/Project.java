@@ -9,7 +9,7 @@ public class Project implements Serializable {
     private int timeslot;
     private Map<String, Integer> roles; // role types and number of people per role required
     private Set<User> users;
-    private Map<String, List<User>> userAssignment;
+    private Map<String, Set<User>> userAssignment;
 
     public Project(String name, String description, String communityCreatedIn,
                    Map<String, Integer> roles) {
@@ -18,11 +18,15 @@ public class Project implements Serializable {
         this.roles = roles;
         this.communityCreatedIn = communityCreatedIn;
         users = new HashSet<User>();
-        userAssignment = new HashMap<String, List<User>> ();
+        userAssignment = new HashMap<String, Set<User>> ();
     }
 
     public String getName() {
         return name;
+    }
+
+    public void addUserAssignment(String role, Set<User> users) {
+        this.userAssignment.put(role, users);
     }
 
     public void setName(String name) {
@@ -61,11 +65,11 @@ public class Project implements Serializable {
         this.users = users;
     }
 
-    public Map<String, List<User>> getUserAssignment() {
+    public Map<String, Set<User>> getUserAssignment() {
         return userAssignment;
     }
 
-    public void setUserAssignment(Map<String, List<User>> userAssignment) {
+    public void setUserAssignment(Map<String, Set<User>> userAssignment) {
         this.userAssignment = userAssignment;
     }
 
