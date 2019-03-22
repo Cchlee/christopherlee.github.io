@@ -3,6 +3,7 @@ package processor;
 import java.util.*;
 import data.*;
 
+
 public class Algorithm {
 
 
@@ -112,11 +113,11 @@ public class Algorithm {
                         freeTime --;
                     }
                 }
-                if (freeTime > 0)
-                {
-                    System.out.println("IDK WAHT TO DO HERE");
-                }
-                else
+//                if (freeTime > 0)
+//                {
+//                    // System.out.println("IDK WAHT TO DO HERE"); // (haha I'm funny)
+//                }
+                if (freeTime < 0)
                 {
                     conflicted = true;
                     break;
@@ -306,23 +307,26 @@ public class Algorithm {
         return day;
     }
 
-    static void printSchedule(Community c)
+    public static String printSchedule(Community c)
     {
+        String outputText = "";
         Set<Project> projs = c.getProjects();
         for (Project p: projs)
         {
-            System.out.println("Project " + p.getName() + " will meet at " + intToDayAndTime(p.getTimeslot()));
+            outputText += ("Project " + p.getName() + " will meet at " + intToDayAndTime(p.getTimeslot()));
             for (String role: p.getUserAssignment().keySet())
             {
-                System.out.println("Working the role " + role + " will be:");
+                outputText += ("Working the role " + role + " will be:");
                 for (User s: p.getUserAssignment().get(role))
                 {
-                    System.out.print(" | " + s.getDisplayName());
+                    outputText += (" | " + s.getDisplayName());
                 }
-                System.out.println();
+                outputText += ("\n");
             }
-            System.out.println('\n');
+            outputText += ("\n\n");
         }
+        Logger.getLogger().log("schedulerOutput.txt", outputText);
+        return outputText;
     }
 
     private static void postprocessing(HashMap<Project, Integer> bestPermutation, Community comm, HashSet<ProjectWrapper> output)

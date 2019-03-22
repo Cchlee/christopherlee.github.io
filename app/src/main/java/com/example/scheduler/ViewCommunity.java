@@ -8,9 +8,12 @@ import android.view.View;
 import android.widget.*;
 import android.content.Intent;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.TreeMap;
 
 import data.*;
+import processor.Algorithm;
 
 public class ViewCommunity extends AppCompatActivity {
     private Button newProject;
@@ -23,11 +26,59 @@ public class ViewCommunity extends AppCompatActivity {
     private TextView title;
     private Map<String, Community> communityMap;
     private TextView description;
+    private String scheduleOutput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_community);
+
+        final Community c = new Community("WPS", "swinging");
+        CommunityMember s = new CommunityMember("Stef", "12345");
+        CommunityMember t = new CommunityMember("Tasya", "12345");
+        CommunityMember k = new CommunityMember("Keri", "12345");
+        CommunityMember m = new CommunityMember("Maddie", "12345");
+        s.addPreference("dancer", 2);
+        t.addPreference("dancer", 2);
+        k.addPreference("dancer", 1);
+        m.addPreference("tech", 1);
+        m.addPreference("dancer", 1);
+
+        boolean[] scheduleS = new boolean[24*7];
+        boolean[] scheduleT = new boolean[24*7];
+        boolean[] scheduleK = new boolean[24*7];
+        boolean[] scheduleM = new boolean[24*7];
+        for (int i=20; i<30; i++)
+        {
+            scheduleS[i] = true;
+            scheduleM[i] = true;
+            scheduleT[i] = true;
+            scheduleK[i] = true;
+        }
+        s.setSchedule(scheduleS);
+        t.setSchedule(scheduleK);
+        k.setSchedule(scheduleT);
+        m.setSchedule(scheduleM);
+
+        Map<String, Integer> jazzRoles = new TreeMap<String, Integer>();
+        jazzRoles.put("dancer", 3);
+
+        Map<String, Integer> elecRoles = new TreeMap<String, Integer>();
+        elecRoles.put("dancer", 2);
+        elecRoles.put("dancer", 1);
+        elecRoles.put("tech", 1);
+
+        Project jazz = new Project("jazz", "jazzy", c.getName(), jazzRoles);
+        Project elec = new Project("electric", "electroswing", c.getName(), elecRoles);
+
+        c.addProject(jazz);
+        c.addProject(elec);
+        HashSet<CommunityMember> peeps = new HashSet<CommunityMember>();
+        peeps.add(m);
+        peeps.add(s);
+        peeps.add(k);
+        peeps.add(t);
+        c.setMembers(peeps);
 
         communityName = getIntent().getStringExtra("Clicked Community");
         communityMap = MainActivity.processor.getCommunitiesMap();
@@ -69,7 +120,10 @@ public class ViewCommunity extends AppCompatActivity {
         runScheduler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Algorithm.runAlgorithm(c);
+                scheduleOutput = Algorithm.printSchedule(c);
                 Intent intent = new Intent(ViewCommunity.this, Scheduler.class);
+                intent.putExtra("outputSched", scheduleOutput);
                 startActivity(intent);
             }
         });
