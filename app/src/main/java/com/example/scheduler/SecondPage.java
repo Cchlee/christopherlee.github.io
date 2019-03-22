@@ -27,7 +27,7 @@ public class SecondPage extends AppCompatActivity {
             }
         });
 
-        isUser = true;
+        isUser = false;
         searchCommunity = findViewById(R.id.searchCommunityButton);
         newCommunity.setOnClickListener(new View.OnClickListener() {
             @Override

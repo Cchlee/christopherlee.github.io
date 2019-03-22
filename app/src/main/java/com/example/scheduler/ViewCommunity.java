@@ -14,6 +14,7 @@ public class ViewCommunity extends AppCompatActivity {
     private String communityName;
     private boolean projectVisibility;
     private String[] userNames;
+    private ImageView communityIcon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,9 @@ public class ViewCommunity extends AppCompatActivity {
             newProject.setVisibility(View.VISIBLE);
         }
 
+        communityIcon = findViewById(R.id.communityIcon);
+        communityIcon.setImageResource(R.drawable.ic_public_black);
+
         // Run scheduler algorithm
         runScheduler = findViewById(R.id.schedulerButton);
         runScheduler.setOnClickListener(new View.OnClickListener() {
@@ -47,17 +51,18 @@ public class ViewCommunity extends AppCompatActivity {
             }
         });
 
+
         userNames = new String[10];
-        userNames[0] = "a";
-        userNames[1] = "b";
-        userNames[2] = "c";
-        userNames[3] = "d";
-        userNames[4] = "e";
-        userNames[5] = "f";
-        userNames[6] = "g";
-        userNames[7] = "h";
-        userNames[8] = "i";
-        userNames[9] = "j";
+        userNames[0] = "Andrew Aardvark";
+        userNames[1] = "Ben Bear";
+        userNames[2] = "Carrie Carp";
+        userNames[3] = "Dennis Deer";
+        userNames[4] = "Elizabeth Eagle";
+        userNames[5] = "Fred Fish";
+        userNames[6] = "George Goat";
+        userNames[7] = "Harry Horse";
+        userNames[8] = "Ian Iguana";
+        userNames[9] = "Jenny Jaguar";
 
         LinearLayout usersInCommunity = findViewById(R.id.usersInCommunity);
 
@@ -71,6 +76,22 @@ public class ViewCommunity extends AppCompatActivity {
             textView.setText(userNames[i]);
 
             usersInCommunity.addView(view);
+
+        }
+
+        LinearLayout projectsInCommunity = findViewById(R.id.projectsInCommunity);
+
+        LayoutInflater inflaterProjects = LayoutInflater.from(this);
+
+        for(int i = 0; i < userNames.length; i++) {
+
+            View view = inflaterProjects.inflate(R.layout.layout_for_vertical_scroller, projectsInCommunity, false);
+
+            TextView textView = view.findViewById(R.id.verticalScrollText);
+            textView.setText(userNames[i]);
+
+
+            projectsInCommunity.addView(view);
 
         }
     }
